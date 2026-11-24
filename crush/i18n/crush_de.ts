@@ -947,12 +947,36 @@ Ein anderes Verzeichnis auf der Festplatte ist sicherer.</translation>
         <translation>Pfad</translation>
     </message>
     <message>
-        <source>Filter… (name:x  type:x)</source>
-        <translation>Filtern… (Name:x  Typ:x)</translation>
+        <source>-hash: is not supported: a file without a computed hash would read as not matching. Nothing is listed.</source>
+        <translation>-hash: wird nicht unterstützt: Eine Datei ohne berechneten Hash würde als Nicht-Treffer erscheinen. Es wird nichts aufgelistet.</translation>
+    </message>
+    <message>
+        <source>hash: takes hexadecimal digits (0-9, a-f). Nothing is listed.</source>
+        <translation>hash: erwartet Hexadezimalziffern (0-9, a-f). Es wird nichts aufgelistet.</translation>
+    </message>
+    <message>
+        <source>hash: takes at most 64 hexadecimal digits (a SHA-256). Nothing is listed.</source>
+        <translation>hash: erwartet höchstens 64 Hexadezimalziffern (ein SHA-256). Es wird nichts aufgelistet.</translation>
+    </message>
+    <message>
+        <source>Matched against computed {algorithm} hashes: {hashed} of {checked} files have one — files without one can&apos;t match.</source>
+        <translation>Abgeglichen mit berechneten {algorithm}-Hashes: {hashed} von {checked} Dateien haben einen — Dateien ohne können nicht treffen.</translation>
+    </message>
+    <message>
+        <source>Matched against computed hashes (prefix, any algorithm): {hashed} of {checked} files hashed — files without a hash can&apos;t match.</source>
+        <translation>Abgeglichen mit berechneten Hashes (Präfix, jeder Algorithmus): {hashed} von {checked} Dateien gehasht — Dateien ohne Hash können nicht treffen.</translation>
+    </message>
+    <message>
+        <source>Filter… (name:x  type:x  hash:x)</source>
+        <translation>Filtern… (name:x  type:x  hash:x)</translation>
     </message>
     <message>
         <source>Send {selected_entries_count} files to Peach</source>
         <translation>{selected_entries_count} Dateien an Peach senden</translation>
+    </message>
+    <message>
+        <source>Compute Hash of {count} selected entries</source>
+        <translation>Hash der {count} ausgewählten Einträge berechnen</translation>
     </message>
     <message>
         <source>Export {selected_entries_count} selected files…</source>
@@ -1113,6 +1137,12 @@ Ein anderes Verzeichnis auf der Festplatte ist sicherer.</translation>
     <message>
         <source>Background: {items}</source>
         <translation>Hintergrund: {items}</translation>
+    </message>
+    <message>
+        <source>{identifier}
+Folder: {name}</source>
+        <translation>{identifier}
+Ordner: {name}</translation>
     </message>
 </context>
 <context>
@@ -1477,12 +1507,6 @@ Die Datei ist möglicherweise urheberrechtlich geschützt, verschlüsselt oder n
         <translation>DEX-Magic (&apos;dex\n&apos;), gefolgt von einer dreistelligen Version und NUL</translation>
     </message>
     <message>
-        <source>Apple disk image format. A UDIF image consists of data blocks (raw or compressed with ADC, zlib, bzip2, LZFSE or LZMA), an XML property list holding the block map, and a 512-byte &apos;koly&apos; trailer at EOF instead of a file header; raw images can lack the trailer. Typically contains an HFS+, APFS, FAT32 or ExFAT filesystem. Can be AES-128 or AES-256 encrypted with a password or a certificate; an encrypted image begins &apos;encrcdsa&apos; (version 2) or ends with &apos;cdsaencr&apos; (version 1), and the &apos;koly&apos; trailer is then inside the encrypted data. Variants: segmented UDIF (.dmgpart), sparse image (.sparseimage, header &apos;sprs&apos;, blocks allocated as written), sparse bundle (.sparsebundle, a folder of band files). Common as a software installer (Downloads folders), as user-created encrypted containers, as the storage of Time Machine backups to network destinations (sparse bundle), and as a preferred acquisition format for macOS devices (SWGDE).</source>
-        <comment>Apple Disk Image (DMG)</comment>
-        <extracomment>Format knowledge: optional, doesn&apos;t count towards the 90 % for View → Language</extracomment>
-        <translation>Disk-Image-Format von Apple. Ein UDIF-Image besteht aus Datenblöcken (roh oder komprimiert mit ADC, zlib, bzip2, LZFSE oder LZMA), einer XML-Property-List mit der Block-Map und einem 512-Byte-&apos;koly&apos;-Trailer am Dateiende statt eines Datei-Headers; rohe Images können ohne Trailer sein. Enthält typischerweise ein HFS+-, APFS-, FAT32- oder ExFAT-Dateisystem. Kann mit Passwort oder Zertifikat per AES-128 oder AES-256 verschlüsselt sein; ein verschlüsseltes Image beginnt mit &apos;encrcdsa&apos; (Version 2) oder endet mit &apos;cdsaencr&apos; (Version 1), und der &apos;koly&apos;-Trailer liegt dann innerhalb der verschlüsselten Daten. Varianten: segmentiertes UDIF (.dmgpart), Sparse Image (.sparseimage, Header &apos;sprs&apos;, Blöcke werden beim Schreiben belegt), Sparse Bundle (.sparsebundle, ein Ordner aus Band-Dateien). Verbreitet als Software-Installer (Downloads-Ordner), als vom Benutzer erstellter verschlüsselter Container, als Speicher von Time-Machine-Backups auf Netzwerkzielen (Sparse Bundle) und als bevorzugtes Sicherungsformat für macOS-Geräte (SWGDE).</translation>
-    </message>
-    <message>
         <source>UDIF &apos;koly&apos; trailer block at EOF-512 (no file header magic)</source>
         <comment>Apple Disk Image (DMG)</comment>
         <extracomment>Format knowledge: optional, doesn&apos;t count towards the 90 % for View → Language</extracomment>
@@ -1745,12 +1769,6 @@ Die Datei ist möglicherweise urheberrechtlich geschützt, verschlüsselt oder n
         <comment>Apple ATX Texture Archive</comment>
         <extracomment>Format knowledge: optional, doesn&apos;t count towards the 90 % for View → Language</extracomment>
         <translation>Apple-ATX-AAPL-Container-Signatur</translation>
-    </message>
-    <message>
-        <source>Khronos texture container. On iOS the payload is normally ASTC 4x4, optionally LZFSE-compressed, flagged by a Compression_APPLE entry in the key/value block. Observed holding application snapshots (Library/Caches/Snapshots and SplashBoard/Snapshots), Safari tab thumbnails (Library/Safari/Thumbnails) and, less often, Photos attachment previews. Snapshots appear in this container and in Apple&apos;s AAPL/ATX one depending on the release; the Safari thumbnails in every tested image were this container and not ATX. A snapshot is the image the system captured of an app&apos;s screen when it was last backgrounded, so decoding one can show on-screen content at that moment. The same extension is also used by textures shipped inside system frameworks and apps, which carry other pixel formats and are not user content.</source>
-        <comment>Khronos KTX 1.1 Texture</comment>
-        <extracomment>Format knowledge: optional, doesn&apos;t count towards the 90 % for View → Language</extracomment>
-        <translation>Khronos-Textur-Container. Unter iOS sind die Nutzdaten normalerweise ASTC 4x4, optional LZFSE-komprimiert, gekennzeichnet durch einen Compression_APPLE-Eintrag im Key/Value-Block. Beobachtet mit App-Snapshots (Library/Caches/Snapshots und SplashBoard/Snapshots), Safari-Tab-Thumbnails (Library/Safari/Thumbnails) und seltener mit Vorschauen von Fotos-Anhängen. Snapshots liegen je nach iOS-Version in diesem Container oder in Apples AAPL/ATX-Container. Die Safari-Thumbnails waren in allen getesteten Images dieser Container und nicht ATX. Ein Snapshot ist das Bild, das das System vom Bildschirm einer App aufgenommen hat, als sie zuletzt in den Hintergrund ging. Das Dekodieren kann daher zeigen, was zu diesem Zeitpunkt auf dem Bildschirm zu sehen war. Dieselbe Endung verwenden auch Texturen, die in System-Frameworks und Apps mitgeliefert werden. Diese haben andere Pixelformate und sind keine Nutzerinhalte.</translation>
     </message>
     <message>
         <source>Khronos KTX 1.1 file identifier</source>
@@ -2327,6 +2345,24 @@ Die Datei ist möglicherweise urheberrechtlich geschützt, verschlüsselt oder n
         <comment>SQLite Database</comment>
         <extracomment>Format knowledge: optional, doesn&apos;t count towards the 90 % for View → Language</extracomment>
         <translation>Die vorherrschende eingebettete Datenbank unter iOS, Android, macOS und Windows. Von praktisch jeder App verwendet, für Nachrichten, Anruflisten, Kontakte, Browserverlauf, Standortdaten und App-Zustand. Erkennbar an einem 16-Byte-Magic-String (&apos;SQLite format 3\000&apos;) an Offset 0. Der 100-Byte-Datei-Header enthält: Page-Größe, Write-Version (rollback=1, WAL=2), Kodierung und Change Counter. Wichtige forensische Wiederherstellungsmechanismen: (1) Freelist: Gelöschte Pages bleiben in einer Liste freier Pages erhalten; Datensätze überdauern, bis sie durch neue Einfügungen überschrieben werden. (2) Freeblocks und Page-Slack: Gelöschte Datensätze in aktiven Pages können in Freeblocks oder teilweise im Unallocated-Bereich unterhalb des aktuellen Cell Pointer Arrays erhalten bleiben. (3) WAL (Write-Ahead Log): Im WAL-Modus enthält die -wal-Datei committete Page-Versionen, die noch nicht per Checkpoint in die Hauptdatei übernommen wurden, Frames einer Transaktion, die bei der Sicherung noch offen war, und kürzlich per Checkpoint übernommene Pages; sie muss zusammen mit der Hauptdatenbank analysiert werden. WAL slack: Nach einem Checkpoint bleiben alte Pages im WAL erhalten, bis sie vom Anfang her überschrieben werden, frühere Datenbankzustände sind wiederherstellbar. KRITISCH: Das Öffnen einer Datenbank im WAL-Modus mit einem Standard-SQLite-Treiber löst einen Checkpoint aus, der die Inhalte des WAL unumkehrbar in die Datenbank überträgt und den WAL leert. Nur forensische Tools mit Lesezugriff oder Low-Level-Parsing verwenden. Lücken in der Tabelle sqlite_sequence zeigen gelöschte AUTOINCREMENT-Zeilen.</translation>
+    </message>
+    <message>
+        <source>Apple disk image format. A UDIF image consists of data blocks (raw or compressed with ADC, zlib, bzip2, LZFSE or LZMA), an XML property list holding the block map, and a 512-byte &apos;koly&apos; trailer at EOF instead of a file header; raw images can lack the trailer. Typically contains an HFS+, APFS, FAT32 or ExFAT filesystem. Can be AES-128 or AES-256 encrypted with a password or a certificate; an encrypted image begins &apos;encrcdsa&apos; (version 2) or ends with &apos;cdsaencr&apos; (version 1), and the &apos;koly&apos; trailer is then inside the encrypted data. Variants: segmented UDIF (.dmgpart), sparse image (.sparseimage, header &apos;sprs&apos;, blocks allocated as written), Apple Sparse Image Format (.asif, macOS 26 and later, header &apos;shdw&apos; followed by a big-endian version, chunks allocated as written), sparse bundle (.sparsebundle, a folder of band files). Common as a software installer (Downloads folders), as user-created encrypted containers, as the storage of Time Machine backups to network destinations (sparse bundle), and as a preferred acquisition format for macOS devices (SWGDE).</source>
+        <comment>Apple Disk Image (DMG)</comment>
+        <extracomment>Format knowledge: optional, doesn&apos;t count towards the 90 % for View → Language</extracomment>
+        <translation>Disk-Image-Format von Apple. Ein UDIF-Image besteht aus Datenblöcken (roh oder komprimiert mit ADC, zlib, bzip2, LZFSE oder LZMA), einer XML-Property-List mit der Block-Map und einem 512-Byte-&apos;koly&apos;-Trailer am Dateiende statt eines Datei-Headers; rohe Images können ohne Trailer sein. Enthält typischerweise ein HFS+-, APFS-, FAT32- oder ExFAT-Dateisystem. Kann mit Passwort oder Zertifikat per AES-128 oder AES-256 verschlüsselt sein; ein verschlüsseltes Image beginnt mit &apos;encrcdsa&apos; (Version 2) oder endet mit &apos;cdsaencr&apos; (Version 1), und der &apos;koly&apos;-Trailer liegt dann innerhalb der verschlüsselten Daten. Varianten: segmentiertes UDIF (.dmgpart), Sparse Image (.sparseimage, Header &apos;sprs&apos;, Blöcke werden beim Schreiben belegt), Apple Sparse Image Format (.asif, ab macOS 26, Header &apos;shdw&apos; gefolgt von einer Big-Endian-Version, Chunks werden beim Schreiben belegt), Sparse Bundle (.sparsebundle, ein Ordner aus Band-Dateien). Verbreitet als Software-Installer (Downloads-Ordner), als vom Benutzer erstellter verschlüsselter Container, als Speicher von Time-Machine-Backups auf Netzwerkzielen (Sparse Bundle) und als bevorzugtes Sicherungsformat für macOS-Geräte (SWGDE).</translation>
+    </message>
+    <message>
+        <source>Apple Sparse Image Format (.asif) header, version 1</source>
+        <comment>Apple Disk Image (DMG)</comment>
+        <extracomment>Format knowledge: optional, doesn&apos;t count towards the 90 % for View → Language</extracomment>
+        <translation>Apple-Sparse-Image-Format-Header (.asif), Version 1</translation>
+    </message>
+    <message>
+        <source>Khronos texture container. On iOS the payload is normally ASTC 4x4, optionally LZFSE-compressed, flagged by a Compression_APPLE entry in the key/value block. Observed holding application snapshots (Library/Caches/Snapshots and SplashBoard/Snapshots), Safari tab thumbnails (Library/Safari/Thumbnails) and, less often, Photos attachment previews. Snapshots appear in this container and in Apple&apos;s AAPL/ATX one depending on the release; the Safari thumbnails in every tested image were this container and not ATX. A snapshot is the image the system captured of an app&apos;s screen when it was last backgrounded, so decoding one can show on-screen content at that moment. Textures shipped inside system frameworks and apps use the same container, with other pixel formats. Apps also write it to their own caches: observed as map overlay tiles in ASTC 8x8 at 512x512, stored without a file extension under an app&apos;s Library/Caches (in a MapOverlays/fsCachedData folder).</source>
+        <comment>Khronos KTX 1.1 Texture</comment>
+        <extracomment>Format knowledge: optional, doesn&apos;t count towards the 90 % for View → Language</extracomment>
+        <translation>Khronos-Textur-Container. Unter iOS sind die Nutzdaten normalerweise ASTC 4x4, optional LZFSE-komprimiert, gekennzeichnet durch einen Compression_APPLE-Eintrag im Key/Value-Block. Beobachtet mit App-Snapshots (Library/Caches/Snapshots und SplashBoard/Snapshots), Safari-Tab-Thumbnails (Library/Safari/Thumbnails) und seltener mit Vorschauen von Fotos-Anhängen. Snapshots liegen je nach iOS-Version in diesem Container oder in Apples AAPL/ATX-Container. Die Safari-Thumbnails waren in allen getesteten Images dieser Container und nicht ATX. Ein Snapshot ist das Bild, das das System vom Bildschirm einer App aufgenommen hat, als sie zuletzt in den Hintergrund ging. Das Dekodieren kann daher zeigen, was zu diesem Zeitpunkt auf dem Bildschirm zu sehen war. Texturen, die in System-Frameworks und Apps mitgeliefert werden, verwenden denselben Container mit anderen Pixelformaten. Apps schreiben ihn auch in ihre eigenen Caches: beobachtet als Kacheln von Kartenüberlagerungen in ASTC 8x8 mit 512x512, ohne Dateiendung gespeichert unter Library/Caches einer App (in einem Ordner MapOverlays/fsCachedData).</translation>
     </message>
     <message>
         <source>Google&apos;s zero-copy binary serialization format. Values are read in place through offsets instead of being parsed first. Uses include the object store of the ObjectBox database (object values are FlatBuffers), TensorFlow Lite models, and the storage format Facebook moved most of its Android app to (Meta engineering blog, 2015). No reliable magic bytes: a buffer starts with a 32-bit offset to its root table; an optional 4-character file_identifier at bytes 4-7 names the schema, and a size-prefixed buffer puts a 32-bit length in front. Each table points to a vtable that lists which fields are stored and where; field types and names are not stored, so without the schema (.fbs, or its binary form .bfbs) a field&apos;s width and meaning are open. Fields equal to their default are usually not written at all. Bytes that no table, vector or string references (padding, superseded data) can remain inside a buffer.</source>
@@ -6301,6 +6337,149 @@ Die Datei ist möglicherweise urheberrechtlich geschützt, verschlüsselt oder n
     </message>
 </context>
 <context>
+    <name>HashDialog</name>
+    <message>
+        <source>All</source>
+        <translation>Alle</translation>
+    </message>
+    <message>
+        <source>Compute Hash</source>
+        <translation>Hash berechnen</translation>
+    </message>
+    <message>
+        <source>Hashing file {done} of {total}
+{bytes_done} of {bytes_total}</source>
+        <translation>Datei {done} von {total} wird gehasht
+{bytes_done} von {bytes_total}</translation>
+    </message>
+    <message>
+        <source>Hashing…</source>
+        <translation>Wird gehasht…</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Abbrechen</translation>
+    </message>
+    <message>
+        <source>Computed over the entry&apos;s content as Crush reads it (for an archive member: its unpacked content).</source>
+        <translation>Berechnet über den Inhalt des Eintrags, wie Crush ihn liest (bei einem Archiveintrag: über seinen entpackten Inhalt).</translation>
+    </message>
+    <message>
+        <source>Hashed — differs from a value computed earlier</source>
+        <translation>Gehasht — weicht von einem früher berechneten Wert ab</translation>
+    </message>
+    <message>
+        <source>Hashed</source>
+        <translation>Gehasht</translation>
+    </message>
+    <message>
+        <source>Not hashed: could not be read: {reason}</source>
+        <translation>Nicht gehasht: konnte nicht gelesen werden: {reason}</translation>
+    </message>
+    <message>
+        <source>Not hashed: no content read (see Entry status)</source>
+        <translation>Nicht gehasht: kein Inhalt gelesen (siehe Eintragstatus)</translation>
+    </message>
+    <message>
+        <source>Folder with an entry status: see Entry status</source>
+        <translation>Ordner mit Eintragstatus: siehe Eintragstatus</translation>
+    </message>
+    <message>
+        <source>Source</source>
+        <translation>Quelle</translation>
+    </message>
+    <message>
+        <source>Path</source>
+        <translation>Pfad</translation>
+    </message>
+    <message>
+        <source>Bytes read</source>
+        <translation>Gelesene Bytes</translation>
+    </message>
+    <message>
+        <source>Result</source>
+        <translation>Ergebnis</translation>
+    </message>
+    <message>
+        <source>Entry status</source>
+        <translation>Eintragstatus</translation>
+    </message>
+    <message>
+        <source>{hashed} of {total} files hashed.</source>
+        <translation>{hashed} von {total} Dateien gehasht.</translation>
+    </message>
+    <message>
+        <source>{n} could not be read.</source>
+        <translation>{n} konnten nicht gelesen werden.</translation>
+    </message>
+    <message>
+        <source>{n} not hashed: no content is read or stored for them (see Entry status).</source>
+        <translation>{n} nicht gehasht: Für sie wird kein Inhalt gelesen oder ist keiner gespeichert (siehe Eintragstatus).</translation>
+    </message>
+    <message>
+        <source>{n} folder(s) with an entry status (for one that couldn&apos;t be listed, its files are missing here).</source>
+        <translation>{n} Ordner mit Eintragstatus (bei einem Ordner, der nicht aufgelistet werden konnte, fehlen seine Dateien hier).</translation>
+    </message>
+    <message>
+        <source>{n} differ from a value computed earlier for the same entry.</source>
+        <translation>{n} weichen von einem früher für denselben Eintrag berechneten Wert ab.</translation>
+    </message>
+    <message>
+        <source>Hashing was cancelled: this list is incomplete.</source>
+        <translation>Das Hashen wurde abgebrochen: Diese Liste ist unvollständig.</translation>
+    </message>
+    <message>
+        <source>Hashing stopped on an error: this list is incomplete. {error}</source>
+        <translation>Das Hashen wurde wegen eines Fehlers beendet: Diese Liste ist unvollständig. {error}</translation>
+    </message>
+    <message>
+        <source>Computed Hashes</source>
+        <translation>Berechnete Hashes</translation>
+    </message>
+    <message>
+        <source>Copy All</source>
+        <translation>Alles kopieren</translation>
+    </message>
+    <message>
+        <source>Save As…</source>
+        <translation>Speichern unter…</translation>
+    </message>
+    <message>
+        <source>Copy cell</source>
+        <translation>Zelle kopieren</translation>
+    </message>
+    <message>
+        <source>Copy row (TSV)</source>
+        <translation>Zeile kopieren (TSV)</translation>
+    </message>
+    <message>
+        <source>Copy selection (TSV)</source>
+        <translation>Auswahl kopieren (TSV)</translation>
+    </message>
+    <message>
+        <source>Preparing the list…</source>
+        <translation>Liste wird vorbereitet…</translation>
+    </message>
+    <message>
+        <source>CSV (*.csv)</source>
+        <translation>CSV (*.csv)</translation>
+    </message>
+    <message>
+        <source>Tab-separated text (*.txt)</source>
+        <translation>Tabulatorgetrennter Text (*.txt)</translation>
+    </message>
+    <message>
+        <source>Save Hashes</source>
+        <translation>Hashes speichern</translation>
+    </message>
+    <message>
+        <source>The list could not be saved:
+{error}</source>
+        <translation>Die Liste konnte nicht gespeichert werden:
+{error}</translation>
+    </message>
+</context>
+<context>
     <name>HexViewer</name>
     <message>
         <source>Search as:</source>
@@ -7343,6 +7522,14 @@ Speicherort öffnen?</translation>
         <translation>Wird abgebrochen…</translation>
     </message>
     <message>
+        <source>Show iOS Container Identifiers</source>
+        <translation>iOS-Container-Kennungen anzeigen</translation>
+    </message>
+    <message>
+        <source>Show iOS container folders (apps, app groups, extensions, system containers) by the identifier of their owner in their metadata plist instead of their GUID folder name</source>
+        <translation>iOS-Container-Ordner (Apps, App-Gruppen, Erweiterungen, Systemcontainer) mit der Kennung ihres Eigentümers aus ihrer Metadaten-Plist statt mit ihrem GUID-Ordnernamen anzeigen</translation>
+    </message>
+    <message>
         <source>{path} opened in a new window</source>
         <translation>{path} wurde in einem neuen Fenster geöffnet</translation>
     </message>
@@ -8065,6 +8252,18 @@ Wenn Sie &quot;Nein&quot; wählen, wird er stattdessen als normaler Ordner geöf
         <translation>enthält ein ZIP-Archiv nach den führenden Bytes {leading:,} — mit der rechten Maustaste klicken → In neuem Fenster öffnen, um den Inhalt anzuzeigen</translation>
     </message>
     <message>
+        <source>{tag} [{count} file(s) without a recorded SHA-1, not checked]</source>
+        <translation>{tag} [{count} Datei(en) ohne gespeicherten SHA-1-Hash, nicht überprüft]</translation>
+    </message>
+    <message>
+        <source>{tag} [{count} file(s) whose content was not collected, not checked]</source>
+        <translation>{tag} [{count} Datei(en), deren Inhalt nicht mit aufgenommen wurde, nicht überprüft]</translation>
+    </message>
+    <message>
+        <source>{tag} [damage found]</source>
+        <translation>{tag} [Schäden gefunden]</translation>
+    </message>
+    <message>
         <source>EnCase Lx01 logical evidence — holds copies of files, not a disk; Crush doesn&apos;t read Lx01</source>
         <translation>Logische Beweismittel in EnCase Lx01 – enthalten Kopien von Dateien, keine Festplatte; Crush liest Lx01 nicht</translation>
     </message>
@@ -8681,6 +8880,10 @@ Wenn Sie &quot;Nein&quot; wählen, wird er stattdessen als normaler Ordner geöf
     <message>
         <source>Shared objects</source>
         <translation>Mehrfach referenzierte Objekte</translation>
+    </message>
+    <message>
+        <source>Shown as</source>
+        <translation>Dargestellt als</translation>
     </message>
     <message>
         <source>Signatures</source>
@@ -9899,6 +10102,21 @@ Wenn Sie &quot;Nein&quot; wählen, wird er stattdessen als normaler Ordner geöf
         <source>Unexpected KTX mipmap count {count}; decoding first level</source>
         <comment>ktx.unexpected_mipmaps</comment>
         <translation>Unerwartete KTX-Mipmap-Anzahl {count}; die erste Stufe wird dekodiert</translation>
+    </message>
+    <message>
+        <source>Texture data is {present} bytes; a {width}x{height} image needs {needed}</source>
+        <comment>ktx.payload_short</comment>
+        <translation>Texturdaten umfassen {present} Bytes; ein Bild mit {width}x{height} benötigt {needed}</translation>
+    </message>
+    <message>
+        <source>Alpha values shown as greyscale: black is transparent, white is opaque</source>
+        <comment>ktx.alpha_as_greyscale</comment>
+        <translation>Alphawerte als Graustufen dargestellt: Schwarz ist transparent, Weiß ist deckend</translation>
+    </message>
+    <message>
+        <source>The {format} decoder rejected the texture data: {detail}</source>
+        <comment>ktx.decoder_rejected</comment>
+        <translation>Der {format}-Decoder hat die Texturdaten abgelehnt: {detail}</translation>
     </message>
     <message>
         <source>LZFSE decompression failed: {detail}</source>
@@ -12821,6 +13039,26 @@ Wenn Sie &quot;Nein&quot; wählen, wird er stattdessen als normaler Ordner geöf
         <translation>Der Parser hat das Format {name} gefunden, das keinen Eintrag in der Formatdatenbank hat; mit dem Wissen des allgemeinen Formats angezeigt</translation>
     </message>
     <message>
+        <source>Not read: the metadata plist is {size:,} bytes, larger than the {limit:,} bytes read for it</source>
+        <comment>ios_container.plist_too_large</comment>
+        <translation>Nicht gelesen: Die Metadaten-Plist ist {size:,} Bytes groß, mehr als die {limit:,} Bytes, die dafür gelesen werden</translation>
+    </message>
+    <message>
+        <source>The metadata plist could not be read: {detail}</source>
+        <comment>ios_container.read_failed</comment>
+        <translation>Die Metadaten-Plist konnte nicht gelesen werden: {detail}</translation>
+    </message>
+    <message>
+        <source>The metadata plist is not a valid plist: {detail}</source>
+        <comment>ios_container.not_a_plist</comment>
+        <translation>Die Metadaten-Plist ist keine gültige Plist: {detail}</translation>
+    </message>
+    <message>
+        <source>The metadata plist holds no {key} string</source>
+        <comment>ios_container.no_identifier</comment>
+        <translation>Die Metadaten-Plist enthält keinen {key}-String</translation>
+    </message>
+    <message>
         <source>(not recorded)</source>
         <comment>ufdr.not_recorded</comment>
         <translation>(nicht erfasst)</translation>
@@ -13204,8 +13442,16 @@ YnBsaXN0MDA…       (Base64)
         <translation>Backup-Datei-ID:</translation>
     </message>
     <message>
+        <source>Container Identifier:</source>
+        <translation>Container-Kennung:</translation>
+    </message>
+    <message>
         <source>Open Format Info…</source>
         <translation>Formatinformationen öffnen...</translation>
+    </message>
+    <message>
+        <source>Compute Hash…</source>
+        <translation>Hash berechnen…</translation>
     </message>
     <message>
         <source>Only the modification time is read from this source. Accessed, Changed, and Birth are not available.</source>
@@ -13266,6 +13512,14 @@ YnBsaXN0MDA…       (Base64)
     <message>
         <source>Warnings</source>
         <translation>Warnungen</translation>
+    </message>
+    <message>
+        <source>{algorithm} (computed):</source>
+        <translation>{algorithm} (berechnet):</translation>
+    </message>
+    <message>
+        <source>Different values were computed for this entry: its content as read changed between computations.</source>
+        <translation>Für diesen Eintrag wurden unterschiedliche Werte berechnet: Sein gelesener Inhalt hat sich zwischen den Berechnungen geändert.</translation>
     </message>
     <message>
         <source>Backup</source>
@@ -14767,6 +15021,50 @@ Gesamt: {total:.2f} s</translation>
 <context>
     <name>VerifyResultDialog</name>
     <message>
+        <source>{count} chunk(s) could not be read:</source>
+        <translation>{count} Chunk(s) konnten nicht gelesen werden:</translation>
+    </message>
+    <message>
+        <source>chunk {chunk} at byte {offset}: {error}</source>
+        <translation>Chunk {chunk} bei Byte {offset}: {error}</translation>
+    </message>
+    <message>
+        <source>{count} file(s) could not be read:</source>
+        <translation>{count} Datei(en) konnten nicht gelesen werden:</translation>
+    </message>
+    <message>
+        <source>{file}, chunk table at byte {offset}: its copy (table2) passes and was read in its place</source>
+        <translation>{file}, Chunk-Tabelle bei Byte {offset}: Ihre Kopie (table2) besteht die Prüfung und wurde an ihrer Stelle gelesen</translation>
+    </message>
+    <message>
+        <source>{file}, chunk table at byte {offset}: no copy passes; the table was read as stored</source>
+        <translation>{file}, Chunk-Tabelle bei Byte {offset}: Keine Kopie besteht die Prüfung; die Tabelle wurde so gelesen, wie sie gespeichert ist</translation>
+    </message>
+    <message>
+        <source>{count} chunk table(s) fail their checksum:</source>
+        <translation>{count} Chunk-Tabelle(n) bestehen ihre Prüfsumme nicht:</translation>
+    </message>
+    <message>
+        <source>{count} segment file(s) record a different acquisition:</source>
+        <translation>{count} Segmentdatei(en) verzeichnen eine andere Erfassung:</translation>
+    </message>
+    <message>
+        <source>{file} records a different acquisition than {expected}</source>
+        <translation>{file} verzeichnet eine andere Erfassung als {expected}</translation>
+    </message>
+    <message>
+        <source>{count} byte(s) of the AD1&apos;s logical space are not reached from its item tree.</source>
+        <translation>{count} Byte(s) des logischen Bereichs des AD1 werden von seinem Elementbaum aus nicht erreicht.</translation>
+    </message>
+    <message>
+        <source>Where (the reader lists at most 5 spans):</source>
+        <translation>Wo (der Reader listet höchstens 5 Bereiche auf):</translation>
+    </message>
+    <message>
+        <source>{length} byte(s) at byte {offset}</source>
+        <translation>{length} Byte(s) bei Byte {offset}</translation>
+    </message>
+    <message>
         <source>MISMATCH</source>
         <translation>NICHT ÜBEREINSTIMMEND</translation>
     </message>
@@ -14787,12 +15085,20 @@ Gesamt: {total:.2f} s</translation>
         <translation>Bei dieser Erfassung wurde kein Hash der gesamten Daten aufgezeichnet; die aufgezeichneten Hashes der Dateien wurden überprüft.</translation>
     </message>
     <message>
+        <source>This acquisition recorded no hash of its whole data; the files it recorded a hash of hold no collected content and were not checked.</source>
+        <translation>Bei dieser Erfassung wurde kein Hash der gesamten Daten aufgezeichnet; die Dateien, für die ein Hash aufgezeichnet wurde, enthalten keinen mit aufgenommenen Inhalt und wurden nicht überprüft.</translation>
+    </message>
+    <message>
         <source>This acquisition recorded no hash to verify against.</source>
         <translation>Bei dieser Erfassung wurde kein Hash zur Überprüfung erfasst.</translation>
     </message>
     <message>
         <source>This acquisition recorded no hash of the whole disk to verify against.</source>
         <translation>Bei dieser Erfassung wurde kein Hashwert der gesamten Disk zur Überprüfung aufgezeichnet.</translation>
+    </message>
+    <message>
+        <source>The acquisition&apos;s own recorded hash matches its data, but damage was found while reading it (see below)</source>
+        <translation>Der in der Erfassung selbst gespeicherte Hash-Wert stimmt mit den Daten überein, beim Lesen wurden aber Schäden gefunden (siehe unten)</translation>
     </message>
     <message>
         <source>MATCH — the acquisition&apos;s own recorded hash matches its data</source>
@@ -14809,6 +15115,10 @@ Gesamt: {total:.2f} s</translation>
     <message>
         <source>An AD1 doesn&apos;t hold its image hash: FTK Imager writes it to its log beside the image ({log}), which was not found.</source>
         <translation>Ein AD1 speichert den Bild-Hash nicht: FTK Imager schreibt ihn in sein Log neben dem Image ({log}), das jedoch nicht gefunden wurde.</translation>
+    </message>
+    <message>
+        <source>Damage found while reading</source>
+        <translation>Beim Lesen gefundene Schäden</translation>
     </message>
     <message>
         <source>Hash of the whole image</source>
@@ -14831,8 +15141,8 @@ Gesamt: {total:.2f} s</translation>
         <translation>{missing} von {total} Datei(en) weisen keinen aufgezeichneten {algorithm} auf und wurden nicht anhand eines solchen überprüft.</translation>
     </message>
     <message>
-        <source>{count} file(s) have a recorded SHA-1, which was not checked: the reader checks an L01&apos;s recorded MD5 only.</source>
-        <translation>{count} Datei(en) verfügen über einen gespeicherten SHA-1-Hash, der nicht überprüft wurde: Der Reader überprüft lediglich den gespeicherten MD5-Hash einer L01-Datei.</translation>
+        <source>{count} of {total} file(s) were not checked against any recorded hash: the acquisition did not collect their content:</source>
+        <translation>{count} von {total} Datei(en) wurden gegen keinen aufgezeichneten Hash geprüft: Ihr Inhalt wurde bei der Erfassung nicht mit aufgenommen:</translation>
     </message>
     <message>
         <source>The container&apos;s own checks</source>
